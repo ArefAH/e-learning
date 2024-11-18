@@ -41,13 +41,13 @@ if (!preg_match('/[a-z]/', $password)) {
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-$stmt = $connection->prepare("INSERT INTO users (username, password, user_type) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $username, $hashed_password, $user_type);
+$query = $connection->prepare("INSERT INTO users (username, password, user_type) VALUES (?, ?, ?)");
+$query->bind_param("sss", $username, $hashed_password, $user_type);
 
-if ($stmt->execute()) {
+if ($query->execute()) {
     echo "User registered successfully.";
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Error: " . $query->error;
 }
 
 ?>
