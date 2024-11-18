@@ -11,6 +11,33 @@ if ($username == null || $password == null || $user_type == null) {
         'message' => 'Credentials are required'
     ]);
 }
+if (!in_array($user_type, ['student', 'instructor', 'admin'])) {
+    http_response_code(400);
+    echo json_encode([
+        'message' => 'Invalid Email Address'
+    ]);
+}
+
+if (strlen($password) < 8) {
+    http_response_code(400);
+    echo json_encode([
+        'message' => 'Password should contain more than 8 characters'
+    ]);
+}
+
+if (!preg_match('/[A-Z]/', $password)) {
+    http_response_code(400);
+    echo json_encode([
+        'message' => 'Password must contain at least one uppercase letter.'
+    ]);
+}
+
+if (!preg_match('/[a-z]/', $password)) {
+    http_response_code(400);
+    echo json_encode([
+        'message' => 'Password must contain at least one lowercase letter.'
+    ]);
+}
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
