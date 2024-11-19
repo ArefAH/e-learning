@@ -1,7 +1,18 @@
 <?php
 include 'connection.php';
+require "vendor/autoload.php";
 
-$instructor_id = $_POST['instructor_id'] ?? null;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+$secretKey = "SecretKey";
+$headers = getallheaders();
+$jwt = $headers["Authorization"];
+
+$key = new Key($secretKey, "HS256");
+$payload = JWT::decode($jwt, $key); 
+
+$instructor_id = $payload->userId;
 $course_id = $_POST['course_id'] ?? null;
 $title = $_POST['title'] ?? null;
 $description = $_POST['description'] ?? null;
@@ -12,15 +23,15 @@ if ($instructor_id == null || $course_id == null || $title == null || $descripti
     echo json_encode(["message" => "All fields are required."]);
 }
 
-$stmt = $conn->prepare("INSERT INTO assignments (instructor_id, course_id, title, description, due_date, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-$stmt->bind_param("iisss", $instructor_id, $course_id, $title, $description, $due_date);
+$query = $connection->prepare("INSERT INTO assignments (instructor_id, course_id, title, description, due_date, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
+$query->bind_param("iisss", $instructor_id, $course_id, $title, $description, $due_date);
 
-if ($stmt->execute()) {
+if ($query->execute()) {
     http_response_code(201);
     echo json_encode(["message" => "Assignment created successfully."]);
 } else {
     http_response_code(500);
-    echo json_encode(["message" => "Error: " . $stmt->error]);
+    echo json_encode(["message" => "Error: " . $query->error]);
 }
-$stmt->close();    
+$query->close();    
 ?>
