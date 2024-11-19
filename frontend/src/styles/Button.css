@@ -2,4 +2,6 @@ button{
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
+    background-color: beige;
+    font-weight: bold;
 }
