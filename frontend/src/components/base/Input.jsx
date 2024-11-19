@@ -3,10 +3,10 @@ import "../../styles/Input.css";
 
 const Input = ({ text, type, onChange }) => {
   return (
-    <>
-      <label>{text}</label>
+    <p>
+      <p><label>{text}</label></p>
       <input type={type} onChange={onChange}/>
-    </>
+    </p>
   );
 };
 
