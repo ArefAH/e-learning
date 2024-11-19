@@ -45,9 +45,11 @@ $query = $connection->prepare("INSERT INTO users (username, password, user_type)
 $query->bind_param("sss", $username, $hashed_password, $user_type);
 
 if ($query->execute()) {
-    echo "User registered successfully.";
+    http_response_code(201);
+    echo json_encode(["message" => "User registered successfully."]);
 } else {
-    echo "Error: " . $query->error;
+    http_response_code(500);
+    echo json_encode(["message" => "Error: " . $stmt->error]);
 }
 
 ?>
