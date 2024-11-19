@@ -1,0 +1,9 @@
+input{
+    border: none;
+    background-color: beige;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+label{
+    color: #414141ad;
+}
