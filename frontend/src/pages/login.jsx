@@ -12,9 +12,25 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin =  () => {
-    console.log(username, password);
-    
+  const handleLogin = async () => {
+    try {
+      console.log(username, password);
+      
+      const result = await requestApi({
+        body: {
+          username,
+          password,
+        },
+        method: requestMethod.POST,
+        route: "/auth/login",
+      });
+
+      localStorage.setItem("token", result.access_token);
+
+      navigate("/Home");
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
   };
   return (
     <div className="login">
