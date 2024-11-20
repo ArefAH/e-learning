@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
 $username = $_POST['username'] ?? null;
 $password = $_POST['password'] ?? null;

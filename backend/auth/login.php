@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 require 'vendor/autoload/php';
 $secretKey = 'SecretKey';
 
