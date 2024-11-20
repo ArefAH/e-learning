@@ -1,6 +1,6 @@
 <?php
 include '../connection.php';
-require 'vendor/autoload/php';
+require '../vendor/autoload.php';
 $secretKey = 'SecretKey';
 
 use Firebase\JWT\JWT;
@@ -24,7 +24,7 @@ if($result -> num_rows != 0){
     $check = password_verify($password, $user['password']);
     if($check){
         $payload = [
-            'userId' => $user['id']
+            'userId' => $user['user_id']
         ];
         $token = JWT::encode($payload, $secretKey, 'HS256');
         echo json_encode([
