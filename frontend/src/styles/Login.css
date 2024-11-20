@@ -1,3 +1,4 @@
+
 .login {
   display: flex;
   flex-direction: column;
@@ -5,10 +6,15 @@
   align-items: center;
   height: 100vh;
   background-color: #131313;
-}
-h1{
-    color: beige;
+  color: beige;
+
 }
 Button{
     margin-top: 25px;
+}
+b{
+  cursor: pointer;
+}
+h3{
+  color: red;
 }

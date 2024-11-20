@@ -1,9 +1,10 @@
 <?php
 include '../connection.php';
+$data = json_decode(file_get_contents("php://input"), true);
 
-$username = $_POST['username'] ?? null;
-$password = $_POST['password'] ?? null;
-$user_type = $_POST['user_type'] ?? 'student';
+$username = $data['username'] ?? null;
+$password = $data['password'] ?? null;
+$user_type = $data['user_type'] ?? 'student';
 
 if ($username == null || $password == null) {
     http_response_code(400);
