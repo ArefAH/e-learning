@@ -5,17 +5,14 @@ import "../styles/Login.css";
 import { useNavigate } from "react-router-dom";
 import { requestApi } from "../utils/request";
 import { requestMethod } from "../utils/enums/requestMethod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const handleLogin = async () => {
     try {
-      console.log(username, password);
-      
       const result = await requestApi({
         body: {
           username,
@@ -26,12 +23,20 @@ const Login = () => {
       });
 
       localStorage.setItem("token", result.access_token);
-
-      navigate("/Home");
     } catch (error) {
       console.log(error.response.data.message);
     }
   };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Enter') {
+        handleLogin();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+  })
+    
+
   return (
     <div className="login">
       <h1>LOGIN</h1>
