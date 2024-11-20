@@ -5,8 +5,6 @@ require "../vendor/autoload.php";
 
 use Firebase\JWT\JWT;
 
-$data = json_decode(file_get_contents("php://input"), true);
-
 $secretKey = "SecretKey";
 
 $username = $data["username"] ?? null;

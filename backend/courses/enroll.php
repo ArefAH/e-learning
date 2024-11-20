@@ -1,8 +1,8 @@
 <?php
-include 'connection.php';
+include '../connection.php';
 
-$user_id = $_POST['user_id'] ??  null;
-$course_id = $_POST['course_id']??  null;
+$user_id = $data['user_id'] ??  null;
+$course_id = $data['course_id']??  null;
 
     if ($user_id == null || $course_id == null) {
         http_response_code(400);
