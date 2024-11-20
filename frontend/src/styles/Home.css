@@ -4,6 +4,7 @@
   right: 0;
   margin: 20px;
   background-color: #364cbe;
+  cursor: pointer;
 }
 .courses {
   display: flex;
