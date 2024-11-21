@@ -4,6 +4,7 @@ import Navbar from "../components/common/Navbar";
 import Mic from "./../assets/icons/mic.svg";
 import Book from "./../assets/icons/book.svg";
 import { useParams } from 'react-router-dom';
+import '../styles/CoursePage.css'
 
 const CoursePage = () => {
   const { courseId } = useParams();
@@ -41,9 +42,11 @@ const CoursePage = () => {
               ) : (
                 <img src={Mic} alt="Announcement logo" />
               )}
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <small>{new Date(item.creation_date).toLocaleString()}</small>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <small>{new Date(item.creation_date).toLocaleString()}</small>
+              </div>
             </div>
           ))
         ) : (
