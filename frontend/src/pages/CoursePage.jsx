@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { requestApi } from "../utils/request";
 import Navbar from "../components/common/Navbar";
+import Mic from "./../assets/icons/mic.svg";
+import Book from "./../assets/icons/book.svg";
 const courseId = localStorage.getItem("courseId");
 
 const CoursePage = () => {
@@ -19,7 +21,6 @@ const CoursePage = () => {
       console.log(error);
     }
   };
-  
 
   useEffect(() => {
     getStream();
@@ -28,12 +29,20 @@ const CoursePage = () => {
     <>
       <Navbar />
       <div className="stream">
-      {stream.length > 0 ? (
+        {stream.length > 0 ? (
           stream.map((item, index) => (
             <div key={index} className="stream-item">
-              
+              {item.source === "Assignment" ? (
+                <img src={Book} alt="Assignment logo" />
+              ) : (
+                <img src={Mic} alt="Announcement logo" />
+              )}
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <small>{new Date(item.creation_date).toLocaleString()}</small>
             </div>
           ))
+          
         ) : (
           <h3>No data available for this course.</h3>
         )}
