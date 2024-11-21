@@ -5,4 +5,5 @@ button{
     background-color: #364CBE;
     font-weight: 700;
     color: #fff;
+    cursor: pointer;
 }

@@ -7,13 +7,15 @@
   height: 100vh;
   background-color: #131313;
   color: beige;
-
 }
 Button{
     margin-top: 25px;
 }
 b{
   cursor: pointer;
+}
+h1{
+  margin-bottom: 20px;
 }
 h3{
   color: red;
