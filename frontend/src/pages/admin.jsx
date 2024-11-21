@@ -2,35 +2,92 @@ import React from "react";
 import Navbar from "../components/common/Navbar";
 import Input from "../components/base/Input";
 import Button from "../components/base/Button";
+import Plus from "../assets/icons/plus.svg"
+import '../styles/Admin.css'
 
 const Admin = () => {
   return (
-    <>
+    <div className="admin">
       <Navbar home={"admin"} />
-      <div className="users">
-        <h2>Users</h2>
+      <div className="students">
+        <h2>Students</h2>
         <table>
           <th>
-            <td>User Name</td>
+            <td>Username</td>
           </th>
           <th>
-            <td>User Type</td>
+            <td>Status</td>
           </th>
           <tbody>
             <tr>
               <td>User</td>
-              <td>Student</td>
+              <td>False</td>
+              <td>
+                <Button>Ban</Button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="instructors">
+        <h2>Instructors<span><img src={Plus} alt="Add Course"/></span></h2>
+        <table>
+          <th>
+            <td>Username</td>
+          </th>
+          <th>
+            <td>Status</td>
+          </th>
+          <tbody>
+            <tr>
+              <td>User</td>
+              <td>False</td>
+              <td>
+                <Button>Assign</Button>
+              </td>
+              <td>
+                <Button>Ban</Button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="course">
+        <h2>Courses<span><img src={Plus} alt="Add Course"/></span></h2>
+        <table>
+          <th>
+            <td>Title</td>
+          </th>
+          <th>
+            <td>Description</td>
+          </th>
+          <th>
+            <td>Code</td>
+          </th>
+          <tbody>
+            <tr>
+              <td>User</td>
+              <td>False</td>
+              <td>Code</td>
+              <td>
+                <Button>Edit</Button>
+              </td>
+              <td>
+                <Button>Delete</Button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div>
         <h2>Add Instructors</h2>
-        <Input />
-        <Input />
+        <br />
+        <Input text={'Username'}/>
+        <Input text={'Password'}/>
         <Button>Add Instructor</Button>
       </div>
-    </>
+      
+    </div>
   );
 };
 
