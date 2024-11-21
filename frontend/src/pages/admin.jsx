@@ -9,6 +9,9 @@ import { requestApi } from "../utils/request";
 const Admin = () => {
   const [students, setStudents] = useState([]);
   const [instructor, setInstructor] = useState([]);
+  const [course, setCourse] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const getStudents = async () => {
     try {
       const result = await requestApi({
@@ -29,9 +32,36 @@ const Admin = () => {
       console.log(error);
     }
   };
+  const getCourse = async () => {
+    try {
+      const result = await requestApi({
+        route: "/courses/allCourses",
+      });
+      setCourse(result.course);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const addInstructor = async () => {
+    try {
+      const result = await requestApi({
+        body: {
+          username,
+          password,
+          user_type: "instructor",
+        },
+        method: "POST",
+        route: "/auth/register",
+      });
+      setInstructor([...instructor, result.user]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getStudents();
     getInstructor();
+    getCourse();
   }, []);
 
   return (
@@ -51,6 +81,9 @@ const Admin = () => {
               <tr key={student.id}>
                 <td>{student.username}</td>
                 <td>{student.status}</td>
+                <td>
+                  <Button>Ban</Button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -70,6 +103,7 @@ const Admin = () => {
           <th>
             <td>Status</td>
           </th>
+
           <tbody>
             {instructor.map((instructor) => (
               <tr key={instructor.id}>
@@ -104,26 +138,40 @@ const Admin = () => {
             <td>Code</td>
           </th>
           <tbody>
-            <tr>
-              <td>User</td>
-              <td>False</td>
-              <td>Code</td>
-              <td>
-                <Button>Edit</Button>
-              </td>
-              <td>
-                <Button>Delete</Button>
-              </td>
-            </tr>
+            {course.map((course) => (
+              <tr key={course.id}>
+                <td>{course.title}</td>
+                <td>{course.code}</td>
+
+                <td>
+                  <Button>Edit</Button>
+                </td>
+                <td>
+                  <Button>Delete</Button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
       <div>
         <h2>Add Instructors</h2>
         <br />
-        <Input text={"Username"} />
-        <Input text={"Password"} />
-        <Button>Add Instructor</Button>
+        <Input
+          text={"Username"}
+          type={"text"}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+        <Input
+          text={"Password"}
+          type={"password"}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <Button onClick={addInstructor}>Add Instructor</Button>
       </div>
     </div>
   );
