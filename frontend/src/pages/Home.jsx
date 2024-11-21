@@ -7,14 +7,14 @@ import Modal from "../components/common/Modal";
 import { requestApi } from "../utils/request";
 
 const Home = () => {
-  const [courses, setCourses] = useState('');
+  const [courses, setCourses] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const getCourses = async () => {
     try {
       const result = await requestApi({
         route: "/courses/list",
       });
-      setCourses(result.courses) 
+      setCourses(result.courses);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +31,14 @@ const Home = () => {
       <div className="courses">
         {courses.length === 0 ? (
           <h2>You are not enrolled in any courses yet</h2>
-        ) : <Course /> }
+        ) : (
+          courses.map((element, index) => (
+            <Course
+              title={element.title}
+              description={element.description}
+            />
+          ))
+        )}
       </div>
       <button
         onClick={() => setIsActive((prev) => !prev)}
