@@ -8,6 +8,7 @@ import { requestApi } from "../utils/request";
 
 const Admin = () => {
   const [students, setStudents] = useState([]);
+  const [instructor, setInstructor] = useState([]);
   const getStudents = async () => {
     try {
       const result = await requestApi({
@@ -18,8 +19,19 @@ const Admin = () => {
       console.log(error);
     }
   };
+  const getInstructor = async () => {
+    try {
+      const result = await requestApi({
+        route: "/user/instructors",
+      });
+      setInstructor(result.instructors);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getStudents();
+    getInstructor();
   }, []);
 
   return (
@@ -59,16 +71,18 @@ const Admin = () => {
             <td>Status</td>
           </th>
           <tbody>
-            <tr>
-              <td>User</td>
-              <td>False</td>
-              <td>
-                <Button>Assign</Button>
-              </td>
-              <td>
-                <Button>Ban</Button>
-              </td>
-            </tr>
+            {instructor.map((instructor) => (
+              <tr key={instructor.id}>
+                <td>{instructor.username}</td>
+                <td>{instructor.status}</td>
+                <td>
+                  <Button>Assign</Button>
+                </td>
+                <td>
+                  <Button>Ban</Button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
