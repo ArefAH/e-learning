@@ -8,15 +8,15 @@
   background-color: #131313;
   color: beige;
 }
-Button{
+.login Button{
     margin-top: 25px;
 }
 b{
   cursor: pointer;
 }
-h1{
+.login h1{
   margin-bottom: 20px;
 }
-h3{
+.login h3{
   color: red;
 }
