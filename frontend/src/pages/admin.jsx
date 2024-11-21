@@ -3,6 +3,7 @@ import Navbar from "../components/common/Navbar";
 import Input from "../components/base/Input";
 import Button from "../components/base/Button";
 import Plus from "../assets/icons/plus.svg";
+import Modal from '../components/common/Modal'
 import "../styles/Admin.css";
 import { requestApi } from "../utils/request";
 
@@ -12,6 +13,8 @@ const Admin = () => {
   const [course, setCourse] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isActive, setIsActive] = useState(true);
+  const [userId, setUserId] = useState()
   const getStudents = async () => {
     try {
       const result = await requestApi({
@@ -58,6 +61,11 @@ const Admin = () => {
       console.log(error);
     }
   };
+
+  const handleAssign = (element) =>{
+    setIsActive((prev) =>!prev)
+    setUserId(element.id)
+  }
   useEffect(() => {
     getStudents();
     getInstructor();
@@ -66,6 +74,7 @@ const Admin = () => {
 
   return (
     <div className="admin">
+      {isActive && <Modal text={'Course Code'} active={setIsActive} userId={userId}/>}
       <Navbar home={"admin"} />
       <div className="students">
         <h2>Students</h2>
@@ -110,7 +119,9 @@ const Admin = () => {
                 <td>{instructor.username}</td>
                 <td>{instructor.status}</td>
                 <td>
-                  <Button>Assign</Button>
+                  <Button onClick={()=>{
+                    handleAssign()
+                  }}>Assign</Button>
                 </td>
                 <td>
                   <Button>Ban</Button>
