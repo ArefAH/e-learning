@@ -34,7 +34,7 @@ const Home = () => {
   return (
     <>
       {isActive && <Modal active={setIsActive} />}
-      <Navbar />
+      <Navbar home={'Home'}/>
       <div className="courses">
         {courses.length === 0 ? (
           <h2>You are not enrolled in any courses yet</h2>

@@ -32,7 +32,7 @@ const CoursePage = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar home={'Home'} />
       <div className="stream">
         {stream.length > 0 ? (
           stream.map((item) => (

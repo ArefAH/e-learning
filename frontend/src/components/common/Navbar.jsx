@@ -4,7 +4,7 @@ import Button from '../base/Button'
 import {useNavigate} from 'react-router-dom'
 import '../../styles/Navbar.css'
 
-const Navbar = () => {
+const Navbar = ({home}) => {
   const navigate = useNavigate();
   const handleSignOut = () => {
     window.localStorage.clear();
@@ -12,7 +12,7 @@ const Navbar = () => {
   }
   return (
     <div className='nav-bar'>
-      <img onClick={()=>{navigate('/Home')}} src={Logo} alt="Logo" />
+      <img onClick={()=>{navigate(`/${home}`)}} src={Logo} alt="Logo" />
       <Button onClick={handleSignOut}>Sign Out</Button>
     </div>
   )
