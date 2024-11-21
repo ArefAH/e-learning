@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/common/Navbar";
 import Input from "../components/base/Input";
 import Button from "../components/base/Button";
-import Plus from "../assets/icons/plus.svg"
-import '../styles/Admin.css'
+import Plus from "../assets/icons/plus.svg";
+import "../styles/Admin.css";
+import { requestApi } from "../utils/request";
 
 const Admin = () => {
+  const [students, setStudents] = useState([]);
+  const getStudents = async () => {
+    try {
+      const result = await requestApi({
+        route: "/user/students",
+      });
+      setStudents(result.students);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getStudents();
+  }, []);
+
   return (
     <div className="admin">
       <Navbar home={"admin"} />
@@ -19,18 +35,22 @@ const Admin = () => {
             <td>Status</td>
           </th>
           <tbody>
-            <tr>
-              <td>User</td>
-              <td>False</td>
-              <td>
-                <Button>Ban</Button>
-              </td>
-            </tr>
+            {students.map((student) => (
+              <tr key={student.id}>
+                <td>{student.username}</td>
+                <td>{student.status}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
       <div className="instructors">
-        <h2>Instructors<span><img src={Plus} alt="Add Course"/></span></h2>
+        <h2>
+          Instructors
+          <span>
+            <img src={Plus} alt="Add Course" />
+          </span>
+        </h2>
         <table>
           <th>
             <td>Username</td>
@@ -53,7 +73,12 @@ const Admin = () => {
         </table>
       </div>
       <div className="course">
-        <h2>Courses<span><img src={Plus} alt="Add Course"/></span></h2>
+        <h2>
+          Courses
+          <span>
+            <img src={Plus} alt="Add Course" />
+          </span>
+        </h2>
         <table>
           <th>
             <td>Title</td>
@@ -82,11 +107,10 @@ const Admin = () => {
       <div>
         <h2>Add Instructors</h2>
         <br />
-        <Input text={'Username'}/>
-        <Input text={'Password'}/>
+        <Input text={"Username"} />
+        <Input text={"Password"} />
         <Button>Add Instructor</Button>
       </div>
-      
     </div>
   );
 };
