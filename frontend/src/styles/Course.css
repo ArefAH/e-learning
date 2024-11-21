@@ -1,0 +1,12 @@
+.course-card{
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+    background-color: aliceblue;
+    background-color: ;
+    border-radius: 10px;
+}

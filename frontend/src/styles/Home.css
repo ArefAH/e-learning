@@ -1,0 +1,16 @@
+.add-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  background-color: #364cbe;
+  cursor: pointer;
+}
+.courses {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - 100px);
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 50px;
+}

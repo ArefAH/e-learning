@@ -1,0 +1,47 @@
+.bg{
+    width: 100%;
+    height: 100vh;
+    background-color: #13131387;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    
+}
+
+.cancel{
+    position:absolute;
+    right: 0;
+    top: 0;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.modal{
+    position: relative;
+    background-color: #fff;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal > h3{
+    margin-bottom: 20px;
+    color: #131313;
+}
+
+.modal Input{
+    background-color: aliceblue;
+}
+
+.modal Button{
+    background-color: #364CBE;
+    color: #fff;
+    cursor: pointer;
+}
+
