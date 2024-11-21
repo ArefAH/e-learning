@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/common/Navbar";
+import Course from "../components/common/Course";
 import Plus from "./../assets/icons/plus.svg";
 import "../styles/Home.css";
 import Modal from "../components/common/Modal";
@@ -28,9 +29,9 @@ const Home = () => {
       {isActive && <Modal active={setIsActive} />}
       <Navbar />
       <div className="courses">
-        {courses.length === 0 && (
+        {courses.length === 0 ? (
           <h2>You are not enrolled in any courses yet</h2>
-        )}
+        ) : <Course /> }
       </div>
       <button
         onClick={() => setIsActive((prev) => !prev)}
