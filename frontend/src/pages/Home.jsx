@@ -11,6 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [isActive, setIsActive] = useState(false);
+
   const getCourses = async () => {
     try {
       const result = await requestApi({
@@ -24,11 +25,10 @@ const Home = () => {
 
   useEffect(() => {
     getCourses();
-  }, [courses]);
+  }, []);
+
   const handleClick = (element) => {
-    console.log('pressed')
-    localStorage.setItem("courseId", element.course_id);
-    navigate("/CoursePage");
+    navigate(`/CoursePage/${element.course_id}`);
   };
 
   return (
@@ -39,12 +39,11 @@ const Home = () => {
         {courses.length === 0 ? (
           <h2>You are not enrolled in any courses yet</h2>
         ) : (
-          courses.map((element, index) => (
+          courses.map((element) => (
             <Course
-              key={index}
-              onClick={() => {
-                handleClick(element);
-              }}
+              key={element.course_id}
+              onClick={() => handleClick(element)}
+              courseId={element.course_id}
               title={element.title}
               description={element.description}
             />
