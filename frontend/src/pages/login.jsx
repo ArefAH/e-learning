@@ -12,8 +12,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const handleLogin = async () => {
-    setUsername('')
-    setPassword('')
     const result = await requestApi({
       body: {
         username,

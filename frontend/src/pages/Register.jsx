@@ -16,7 +16,7 @@ const Register = () => {
   const handleRegister = async () => {
     if (password === confirmPassword) {
       setMatch(false);
-      setError(false)
+      setError(false);
       const result = await requestApi({
         body: {
           username,
@@ -25,8 +25,6 @@ const Register = () => {
         method: "POST",
         route: "/auth/register",
       });
-
-      localStorage.setItem("token", result.access_token);
       console.log(result);
       if (result.message === "User registered successfully.") {
         navigate("/");

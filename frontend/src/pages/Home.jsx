@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     getCourses();
-  }, []);
+  }, [courses]);
   const handleClick = (element) => {
     console.log('pressed')
     localStorage.setItem("courseId", element.course_id);

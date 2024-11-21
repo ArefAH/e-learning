@@ -12,7 +12,7 @@ const Navbar = () => {
   }
   return (
     <div className='nav-bar'>
-      <img src={Logo} alt="Logo" />
+      <img onClick={()=>{navigate('/Home')}} src={Logo} alt="Logo" />
       <Button onClick={handleSignOut}>Sign Out</Button>
     </div>
   )
