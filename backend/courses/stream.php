@@ -1,7 +1,7 @@
 <?php
 include '../connection.php';
 
-$course_id = $data['courseId'] ?? null;
+$course_id = $data['courseId']?? 1;
 
 if ($course_id === null) {
     http_response_code(400);
@@ -12,8 +12,6 @@ if ($course_id === null) {
 try {
     $query = $connection->prepare('
         SELECT 
-            id, 
-            title, 
             description, 
             creation_date, 
             "Assignment" AS source 
@@ -21,9 +19,7 @@ try {
         WHERE course_id = ?
         UNION 
         SELECT 
-            id, 
-            title, 
-            description, 
+            content, 
             creation_date, 
             "Announcement" AS source 
         FROM announcements 

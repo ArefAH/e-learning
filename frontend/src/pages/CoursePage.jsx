@@ -4,30 +4,39 @@ import Navbar from "../components/common/Navbar";
 const courseId = localStorage.getItem("courseId");
 
 const CoursePage = () => {
-  const [stream, setStream] = useState([])
+  const [stream, setStream] = useState([]);
   const getStream = async () => {
     try {
       const result = await requestApi({
-        route: "/courses/stream",
+        route: "courses/stream",
         method: "POST",
         body: {
           courseId,
         },
       });
-      setStream([...stream], [result])
+      setStream(result?.stream || []);
     } catch (error) {
       console.log(error);
     }
   };
+  
 
-  useEffect(()=>{
+  useEffect(() => {
     getStream();
-  }, [])
+  }, []);
   return (
     <>
       <Navbar />
       <div className="stream">
-        
+      {stream.length > 0 ? (
+          stream.map((item, index) => (
+            <div key={index} className="stream-item">
+              
+            </div>
+          ))
+        ) : (
+          <h3>No data available for this course.</h3>
+        )}
       </div>
     </>
   );
