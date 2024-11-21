@@ -5,8 +5,10 @@ import Plus from "./../assets/icons/plus.svg";
 import "../styles/Home.css";
 import Modal from "../components/common/Modal";
 import { requestApi } from "../utils/request";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [isActive, setIsActive] = useState(false);
   const getCourses = async () => {
@@ -23,6 +25,11 @@ const Home = () => {
   useEffect(() => {
     getCourses();
   }, []);
+  const handleClick = (element) => {
+    console.log('pressed')
+    localStorage.setItem("courseId", element.course_id);
+    navigate("/CoursePage");
+  };
 
   return (
     <>
@@ -34,6 +41,10 @@ const Home = () => {
         ) : (
           courses.map((element, index) => (
             <Course
+              key={index}
+              onClick={() => {
+                handleClick(element);
+              }}
               title={element.title}
               description={element.description}
             />
