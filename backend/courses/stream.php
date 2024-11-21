@@ -12,7 +12,7 @@ if ($course_id === null) {
 try {
     $query = $connection->prepare('
         SELECT 
-            description, 
+            content, 
             creation_date, 
             "Assignment" AS source 
         FROM assignments 

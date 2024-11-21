@@ -26,6 +26,9 @@ const Login = () => {
     if (result.message === "Successful") {
       navigate("/Home");
     }
+    else if(result.message === "admin"){
+      navigate('/Admin')
+    }
     else{
       setError(true)
     }

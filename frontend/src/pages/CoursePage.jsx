@@ -3,8 +3,8 @@ import { requestApi } from "../utils/request";
 import Navbar from "../components/common/Navbar";
 import Mic from "./../assets/icons/mic.svg";
 import Book from "./../assets/icons/book.svg";
-import { useParams } from 'react-router-dom';
-import '../styles/CoursePage.css'
+import { useParams } from "react-router-dom";
+import "../styles/CoursePage.css";
 
 const CoursePage = () => {
   const { courseId } = useParams();
@@ -43,14 +43,13 @@ const CoursePage = () => {
                 <img src={Mic} alt="Announcement logo" />
               )}
               <div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                <h3>{item.content}</h3>
                 <small>{new Date(item.creation_date).toLocaleString()}</small>
               </div>
             </div>
           ))
         ) : (
-          <h3>No data available for this course.</h3>
+          <h2>No data available for this course.</h2>
         )}
       </div>
     </>

@@ -37,11 +37,19 @@ if($result->num_rows != 0) {
 
     $token = JWT::encode($payload, $secretKey, "HS256");
 
-    echo json_encode([
-      "message" => "Successful",
-      "user" => $user,
-      "access_token" => $token,
-    ]);
+    if ($user["user_type"] == "admin") {
+      echo json_encode([
+          "message" => "admin",
+          "user" => $user,
+          "access_token" => $token,
+      ]);
+    } else {
+      echo json_encode([
+          "message" => "Successful",
+          "user" => $user,
+          "access_token" => $token,
+      ]);
+    }
   } else {
     http_response_code(400);
 
